@@ -312,6 +312,9 @@ object { Grid($gs,0.01,pigment{color rgb<1,1,1,1>*2}) rotate <90,0,0> }
 
    close $fh;
 
+
+   #print ("timeout ".$conf->{timeout}." povray"." -d"." -v"." -i$tmp"." +FN"." +W$w"." +H$h"." -o\"$out\""." +Q11"." +AM1"." +A"." +UA"." +R5");
+
    if(fork()==0) {
       close STDOUT;
       close STDERR;

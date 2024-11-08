@@ -343,6 +343,7 @@ sub help() {
       --complete_layer=<n>    set last complete layer: 0..n
       --even or --odd         set alternate color to distinct layers
       --timeout=<s>           set timeout of povray (default: $conf->{timeout})
+      --keep                  do net delete the temp file after rendering
       
    examples:
       gcode2png gcube.gcode

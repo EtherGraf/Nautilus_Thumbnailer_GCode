@@ -110,6 +110,11 @@ sub process {
    $out =~ s/\.gcode$/.png/i;
    $out = $conf->{output} if(defined $conf->{output});
 
+   open(my $fhlog,">>","/tmp/thumb.log");
+   print $fhlog $fn."---".$out."----".$conf->{size}."\n";
+   
+    close $fhlog;
+
    open(my $fho,">",$tmp);
    open(my $fh,"<",$fn);
    print $fho "// created by $APPNAME $VERSION, ".scalar localtime()." from $fn\n";
@@ -318,12 +323,13 @@ object { Grid($gs,0.01,pigment{color rgb<1,1,1,1>*2}) rotate <90,0,0> }
    if(fork()==0) {
       close STDOUT;
       close STDERR;
-      exec("timeout",$conf->{timeout},"povray","-d","-v","-i$tmp","+FN","+W$w","+H$h","-o\"$out\"","+Q11","+AM1","+A","+UA","+R5");
+      system("timeout",$conf->{timeout},"povray","-d","-v","-i$tmp","+FN","+W$w","+H$h","-o\"$out.teemp.png\"","+Q11","+AM1","+A","+UA","+R5");
    }
    wait;
    my $err = $? >> 8;
    print "$APPNAME: ERROR: $err in povray, abort\n" if($err);
    unlink $tmp unless($conf->{keep});
+  system("cp $out.teemp.png $out");
 }
 
 sub help() {

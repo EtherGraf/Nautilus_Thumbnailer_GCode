@@ -1,4 +1,14 @@
-# Nautilus GCode Thumbnailer
+# Nautilus and Thunar GCode Thumbnailer
+
+---
+**NOTE**
+
+This is a fork of https://raw.githubusercontent.com/Spiritdude/Nautilus_Thumbnailer_GCode
+
+For some unknown reason the orignal doesn't work on my debian 12.8 with thunar. The thumbnailer runs, but the generated png gets discarded.
+With some small modifications it runs on thunar too.
+
+---
 
 Nautilus aka GNOME File Browser:
 
@@ -7,7 +17,12 @@ Nautilus aka GNOME File Browser:
 It supports G-code for 3D printers sliced with Slic3r, Prusa Slicer and Cura.
 
 ## Requirements
-- install PovRay `sudo apt -y install povray povray-includes` and `(cd ~; ln -s /etc/povray/ .povray)`
+Install PovRay 
+```
+sudo apt -y install povray povray-includes
+(cd ~; ln -s /etc/povray/ .povray)
+```
+
 
 ## Download
 ```
